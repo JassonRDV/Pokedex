@@ -1,7 +1,5 @@
 package com.example.pokedex.data.api
 
-import com.example.pokedex.data.repository.PokemonRepository
-import com.example.pokedex.data.repository.PokemonRepositoryImplementation
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -9,6 +7,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import w.PokemonRepository
+import w.PokemonRepositoryImplementation
 import javax.inject.Singleton
 
 @Module

@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Modifier
 import com.example.pokedex.ui.theme.PokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PokedexTheme {
-                PokedexApp(modifier = Modifier.fillMaxSize())
+                PokedexApp()
             }
         }
     }
