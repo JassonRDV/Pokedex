@@ -1,8 +1,85 @@
 package com.example.pokedex.ui.screens
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import com.example.pokedex.viewmodel.Pokemon
+import com.example.pokedex.viewmodel.PokemonViewModel
 
 @Composable
-fun PokemonListScreen() {
+fun PokemonListScreen(
+    modifier: Modifier,
+    viewModel: PokemonViewModel,
+    pokemonQuery: List<Pokemon>,
+) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(4),
+        modifier = modifier
+            .padding(4.dp)
+            .fillMaxSize()
+    ) {
+        items( pokemonQuery.size ) { index ->
+            val pokemon = pokemonQuery[index]
+            PokemonItem(pokemon, viewModel, index)
+        }
+    }
+}
 
+@Composable
+private fun PokemonItem(
+    pokemon: Pokemon,
+    viewModel: PokemonViewModel,
+    index: Int,
+) {
+    Card(
+        elevation = CardDefaults.cardElevation(4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.inversePrimary,
+            contentColor = MaterialTheme.colorScheme.scrim
+        ),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(4.dp)
+            .then(
+                if (!viewModel.showDetail.show) {
+                    Modifier.clickable(
+                        onClick = {
+                            viewModel.loadPokemonDetail((index + 1).toString(), index)
+                        }
+                    )
+                } else {
+                    Modifier
+                }
+            )
+    ) {
+        AsyncImage(
+            model = pokemon.imageUrl,
+            contentDescription = pokemon.name,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(4.dp)
+        )
+        Text(
+            pokemon.name,
+            maxLines = 1,
+            fontSize = 12.sp,
+            modifier = Modifier
+                .padding(4.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+    }
 }

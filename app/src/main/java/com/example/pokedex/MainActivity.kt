@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PokedexTheme {
-                PokedexApp(modifier = Modifier.fillMaxSize())
+                PokedexApp()
             }
         }
     }
