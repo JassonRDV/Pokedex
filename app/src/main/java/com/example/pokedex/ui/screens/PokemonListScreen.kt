@@ -1,6 +1,8 @@
 package com.example.pokedex.ui.screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -73,13 +75,27 @@ private fun PokemonItem(
                 .fillMaxSize()
                 .padding(4.dp)
         )
-        Text(
-            pokemon.name,
-            maxLines = 1,
-            fontSize = 12.sp,
+        Column (
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
             modifier = Modifier
-                .padding(4.dp)
-                .align(Alignment.CenterHorizontally)
+                .padding(8.dp)
+                .fillMaxSize()
         )
+        {
+            Text(
+                text = String.format("N° %04d", index),
+                maxLines = 1,
+                fontSize = 8.sp,
+                modifier = Modifier
+            )
+            Text(
+                text = pokemon.name.replaceFirstChar { it.uppercase() },
+                maxLines = 1,
+                fontSize = 12.sp,
+                fontWeight = MaterialTheme.typography.titleMedium.fontWeight,
+                modifier = Modifier
+            )
+        }
     }
 }

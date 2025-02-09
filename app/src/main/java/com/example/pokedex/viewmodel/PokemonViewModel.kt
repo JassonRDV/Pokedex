@@ -12,15 +12,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 enum class ApiUiState {
-    LOADING, ERROR, SUCCESS
+    LOADING, SUCCESS
 }
-
-data class PokemonDetail(
-    val id: Int,
-    val name: String,
-    val sprites: Sprites?,
-    val types: List<PokemonType>
-)
 
 data class Pokemon(
     val name: String,
@@ -36,6 +29,13 @@ data class Pokemon(
             }
         }
 }
+
+data class PokemonDetail(
+    val id: Int,
+    val name: String,
+    val sprites: Sprites?,
+    val types: List<PokemonType>
+)
 
 data class Sprites(
     val front_default: String?
@@ -83,7 +83,7 @@ class PokemonViewModel @Inject constructor(
     }
 
     // Função para carregar lista de pokémons
-    private fun loadPokemonList(limit: Int) {
+    private fun loadPokemonList() {
         setLoadingState(ApiUiState.LOADING)
         viewModelScope.launch {
             try {

@@ -1,25 +1,25 @@
 package com.example.pokedex.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,6 +34,9 @@ fun PokemonDetailScreen(
 ) {
     Card(
         elevation = CardDefaults.cardElevation(4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+        ),
         modifier = modifier
     ) {
         Box(
@@ -47,10 +50,11 @@ fun PokemonDetailScreen(
                     .align(Alignment.CenterStart)
             ) {
                 Icon(
-                    Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                    Icons.AutoMirrored.Rounded.KeyboardArrowLeft,
                     contentDescription = "Voltar",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier
+                        .size(200.dp)
                 )
             }
             IconButton(
@@ -61,10 +65,11 @@ fun PokemonDetailScreen(
                     .align(Alignment.CenterEnd)
             ) {
                 Icon(
-                    Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    Icons.AutoMirrored.Rounded.KeyboardArrowRight,
                     contentDescription = "Voltar",
-                    tint = Color.Black,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier
+                        .size(200.dp)
                 )
             }
             AsyncImage(
@@ -73,35 +78,37 @@ fun PokemonDetailScreen(
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(4.dp)
+                    .padding(48.dp)
             )
-            Row(
-                verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.SpaceAround,
+            Column(
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .padding(24.dp)
                     .fillMaxSize()
+                    .padding(20.dp)
             ) {
                 Text(
-                    text = viewModel.selectedPokemon?.name.toString(),
-                    fontSize = 20.sp,
+                    text = viewModel.selectedPokemon?.name.toString()
+                        .replaceFirstChar { it.uppercase() },
+                    fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier
                         .clip(RoundedCornerShape(4.dp))
-                        .background(color = Color.LightGray)
                         .padding(4.dp)
                 )
                 Text(
-                    text = viewModel.selectedPokemon?.types?.joinToString("•")
-                    { it.type.name } ?: "Desconhecido",
-                    fontSize = 20.sp,
+                    text = viewModel.selectedPokemon?.types?.joinToString(" • ")
+                    { it.type.name } ?: "Escondido",
+                    fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier
                         .clip(RoundedCornerShape(4.dp))
-                        .background(color = Color.LightGray)
                         .padding(4.dp)
                 )
             }
         }
+
     }
 }
