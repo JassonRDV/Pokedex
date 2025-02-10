@@ -20,12 +20,13 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.pokedex.viewmodel.Pokemon
 import com.example.pokedex.viewmodel.PokemonViewModel
+import com.example.pokedex.viewmodel.UiState
 
 @Composable
 fun PokemonListScreen(
     modifier: Modifier,
     viewModel: PokemonViewModel,
-    pokemonQuery: List<Pokemon>,
+    uiState: UiState,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(4),
@@ -33,9 +34,16 @@ fun PokemonListScreen(
             .padding(4.dp)
             .fillMaxSize()
     ) {
-        items( pokemonQuery.size ) { index ->
-            val pokemon = pokemonQuery[index]
-            PokemonItem(pokemon, viewModel, index)
+        items(uiState.pokemonQuery.size) { index ->
+            val pokemon = uiState.pokemonQuery[index]
+            val pokeId = pokemon.id
+            PokemonItem(
+                pokemon = pokemon,
+                viewModel = viewModel,
+                uiState = uiState,
+                index = index,
+                pokeId = pokeId
+            )
         }
     }
 }
@@ -44,7 +52,9 @@ fun PokemonListScreen(
 private fun PokemonItem(
     pokemon: Pokemon,
     viewModel: PokemonViewModel,
+    uiState: UiState,
     index: Int,
+    pokeId: Int
 ) {
     Card(
         elevation = CardDefaults.cardElevation(4.dp),
@@ -56,7 +66,7 @@ private fun PokemonItem(
             .fillMaxSize()
             .padding(4.dp)
             .then(
-                if (!viewModel.showDetail.show) {
+                if (!uiState.show) {
                     Modifier.clickable(
                         onClick = {
                             viewModel.loadPokemonDetail((index + 1).toString(), index)
@@ -73,9 +83,9 @@ private fun PokemonItem(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(4.dp)
+                .padding(4.dp),
         )
-        Column (
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
@@ -84,7 +94,7 @@ private fun PokemonItem(
         )
         {
             Text(
-                text = String.format("N° %04d", index),
+                text = String.format("N° %04d", pokeId),
                 maxLines = 1,
                 fontSize = 8.sp,
                 modifier = Modifier
