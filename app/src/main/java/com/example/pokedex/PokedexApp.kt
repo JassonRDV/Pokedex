@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,7 +37,7 @@ fun PokedexApp(
     viewModel: PokemonViewModel = viewModel()
 ) {
 
-    val pokemonQuery = viewModel.getFilteredPokemonList()
+    val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {
@@ -55,16 +56,17 @@ fun PokedexApp(
             PokemonListScreen(
                 modifier = Modifier,
                 viewModel = viewModel,
-                pokemonQuery = pokemonQuery,
+                uiState = uiState,
             )
             AnimatedVisibility(
-                visible = viewModel.showDetail.show,
+                visible = uiState.show,
                 enter = scaleIn(),
                 exit = scaleOut(),
                 modifier = Modifier.align(Alignment.Center)
             ) {
                 PokemonDetailScreen(
-                    viewModel,
+                    viewModel = viewModel,
+                    uiState = uiState,
                     modifier = Modifier
                         .padding(40.dp)
                         .aspectRatio(1f)
@@ -95,6 +97,7 @@ fun SmallTopAppBar(viewModel: PokemonViewModel) {
                     onValueChange = { newText ->
                         text = newText
                         viewModel.updateSearchQuery(newText)
+                        viewModel.getFilteredPokemonList()
                     },
                     placeholder = { Text(stringResource(R.string.search_pokemon)) },
                     singleLine = true,

@@ -1,5 +1,6 @@
 package com.example.pokedex.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,11 +27,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.pokedex.viewmodel.PokemonViewModel
+import com.example.pokedex.viewmodel.UiState
 
 @Composable
 fun PokemonDetailScreen(
     viewModel: PokemonViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    uiState: UiState
 ) {
     Card(
         elevation = CardDefaults.cardElevation(4.dp),
@@ -73,13 +76,14 @@ fun PokemonDetailScreen(
                 )
             }
             AsyncImage(
-                model = viewModel.selectedPokemon?.sprites?.front_default,
-                contentDescription = viewModel.selectedPokemon?.name,
+                model = uiState.selectedPokemon?.sprites?.frontDefault ?: "",
+                contentDescription = uiState.selectedPokemon?.name,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(48.dp)
+                    .padding(48.dp),
             )
+            Log.d("PokemonDetailScreen", "PokemonDetailScreen: ${uiState.selectedPokemon?.sprites?.frontDefault}")
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -88,7 +92,7 @@ fun PokemonDetailScreen(
                     .padding(20.dp)
             ) {
                 Text(
-                    text = viewModel.selectedPokemon?.name.toString()
+                    text = uiState.selectedPokemon?.name.toString()
                         .replaceFirstChar { it.uppercase() },
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
@@ -98,7 +102,7 @@ fun PokemonDetailScreen(
                         .padding(4.dp)
                 )
                 Text(
-                    text = viewModel.selectedPokemon?.types?.joinToString(" • ")
+                    text = uiState.selectedPokemon?.types?.joinToString(" • ")
                     { it.type.name } ?: "Escondido",
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
