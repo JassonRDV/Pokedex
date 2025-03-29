@@ -8,12 +8,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -36,12 +39,14 @@ import com.example.pokedex.viewmodel.PokemonViewModel
 fun PokedexApp(
     viewModel: PokemonViewModel = viewModel()
 ) {
-
     val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(viewModel = viewModel)
+            SmallTopAppBar(
+                viewModel = viewModel,
+                modifier = Modifier
+            )
         },
         containerColor = Color.Transparent,
         contentColor = Color.Transparent,
@@ -83,31 +88,35 @@ fun PokedexApp(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SmallTopAppBar(viewModel: PokemonViewModel) {
-
+fun SmallTopAppBar(
+    viewModel: PokemonViewModel,
+    modifier: Modifier = Modifier
+) {
     var text by remember { mutableStateOf("") }
-
     TopAppBar(
+        modifier = modifier,
         title = {
-            Box(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                TextField(
-                    value = text,
-                    onValueChange = { newText ->
-                        text = newText
-                        viewModel.updateSearchQuery(newText)
-                        viewModel.getFilteredPokemonList()
-                    },
-                    placeholder = { Text(stringResource(R.string.search_pokemon)) },
-                    singleLine = true,
-                    textStyle = TextStyle(color = Color.Black),
-                    modifier = Modifier
-                        .align(Alignment.Center),
-                )
-            }
+            TextField(
+                value = text,
+                onValueChange = { newText ->
+                    text = newText
+                    viewModel.updateSearchQuery(newText)
+                    viewModel.getFilteredPokemonList()
+                },
+                placeholder = { Text(stringResource(R.string.search_pokemon)) },
+                singleLine = true,
+                textStyle = TextStyle(color = Color.Black),
+                shape = RoundedCornerShape(24.dp),
+                colors = TextFieldDefaults.colors(
+                    disabledIndicatorColor = Color.Transparent,
+                    errorIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                ),
+                modifier = Modifier
+                    .padding(end = 16.dp)
+                    .fillMaxWidth()
+            )
         },
-        modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.background)
     )
 }
