@@ -6,7 +6,7 @@
 
 **Features:**
 * ✅ Listing and details of Pokémon (names, images, types).
-* ✨ Intuitive and functional user interface.
+* ✅ Intuitive and functional user interface.
 
 **Technologies:**
 <p align="left">
