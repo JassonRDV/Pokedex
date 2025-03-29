@@ -1,12 +1,12 @@
-
-
-# Pokedex Android - Job Application Challenge
+# 📱 Pokedex Android - Job Application Challenge 🚀
 
 Pokedex app in Kotlin for Android, created as a technical challenge.
 
-**Purpose:** To demonstrate skills in Android and Kotlin development for a job opportunity.
+**Purpose:** 🎯 To demonstrate skills in Android and Kotlin development for a job opportunity. 💡
 
-**Features:** Listing and details of Pokémon (names, images, types).
+**Features:**
+* ✅ Listing and details of Pokémon (names, images, types).
+* ✨ Intuitive and functional user interface.
 
 **Technologies:**
 <p align="left">
@@ -24,11 +24,13 @@ Pokedex app in Kotlin for Android, created as a technical challenge.
   </tr>
 </table>
 
-**Skills:** Android development, Kotlin, API consumption, Jetpack Compose
+**Skills:** 💻 Android development, 🚀 Kotlin, 📡 API consumption, 🎨 Jetpack Compose
 
 **Contact:**
 <p align="left">
   <a href="https://www.linkedin.com/in/jasson-ramos-66b897340/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-  </a>
+  </a> ✉️
 </p>
+
+**License:** 🛡️ MIT License 🔓
