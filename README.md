@@ -1,7 +1,5 @@
 # 🚀 Pokedex Android - Job Application Challenge
 
-✨ Pokedex app in Kotlin for Android, created as a technical challenge.
-
 **Purpose:** 🎯 To demonstrate skills in Android and Kotlin development for a job opportunity.
 
 **Features:**
