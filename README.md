@@ -6,9 +6,9 @@
   </tr>
 </table>
 
-# 🚀 Pokedex Android - Job Application Challenge
+# Pokedex Android - Job Application Challenge
 
-**Purpose:** 🎯 To demonstrate skills in Android and Kotlin development for a job opportunity.
+**Purpose:** To demonstrate skills in Android and Kotlin development for a job opportunity.
 
 **Features:**
 * ✅ Listing and details of Pokémon (names, images, types).
