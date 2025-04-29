@@ -6,7 +6,7 @@
   </tr>
 </table>
 
-# Pokedex Android
+# Pokedex Nativo Android
 
 **Features:**
 * ✅ Listing and details of Pokémon (names, images, types).
@@ -14,10 +14,10 @@
 
 **Technologies:**
 <p align="left">
-  <img src="https://img.shields.io/badge/Kotlin-0095D5?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin"/>
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android"/>
-  <img src="https://img.shields.io/badge/PokeAPI-FFCB05?style=for-the-badge&logo=pokeapi&logoColor=black" alt="PokeAPI"/>
+  <img src="https://img.shields.io/badge/Kotlin-0095D5?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin"/>
   <img src="https://img.shields.io/badge/Jetpack_Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white" alt="Jetpack Compose"/>
+  <img src="https://img.shields.io/badge/PokeAPI-FFCB05?style=for-the-badge&logo=pokeapi&logoColor=black" alt="PokeAPI"/>
 </p>
 
 **Skills:** Android development, Kotlin, API consumption, Jetpack Compose
