@@ -20,7 +20,7 @@
   <img src="https://img.shields.io/badge/PokeAPI-FFCB05?style=for-the-badge&logo=pokeapi&logoColor=black" alt="PokeAPI"/>
 </p>
 
-**Skills:** Android development, Kotlin, API consumption, Jetpack Compose
+**Skills:** Android development, Kotlin, API consumption, Jetpack Compose, MVVM, RetroFit and Repository pattern
 
 **Contact:**
 <p align="left">
